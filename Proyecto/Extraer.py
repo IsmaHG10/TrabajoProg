@@ -20,6 +20,7 @@ def caracter_desde_codigo_ascii(numero):
 
 
 def leer(ruta_imagen):
+    global imagen
     imagen = Image.open(ruta_imagen)
     pixeles = imagen.load()
 
@@ -68,3 +69,4 @@ def leer(ruta_imagen):
 mensaje = leer("proyimod1T.png")
 print("El mensaje oculto es:")
 print(mensaje)
+imagen.show()
