@@ -125,7 +125,7 @@ def Menu():
         print(("\033[1m\033[4mAPLICACIÓN ESTEGANO\033[0m\033[0m".center(100, " ")), end="\n")
         print()
         a = input(
-            "1. Insertar mensaje oculto en una imagen \n2. Extraer mensaje oculto de una imagen \n3. Convertir la imagen a escala de grises \n4. Salir \n\nOpción: ")
+            "1) Insertar mensaje oculto en una imagen \n2) Extraer mensaje oculto de una imagen \n3) Convertir la imagen a escala de grises \n4) Salir \n\nOpción: ")
         usuario = int(a)
         if usuario == 1:
             print()
