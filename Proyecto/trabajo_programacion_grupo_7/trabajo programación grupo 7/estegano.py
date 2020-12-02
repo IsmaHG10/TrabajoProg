@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
-import types
 
 print()
+
+
 def mensaje_a_binario(mensaje_1):
     if type(mensaje_1) == str:
         return ''.join([format(ord(i), "08b") for i in mensaje_1])
@@ -11,14 +12,14 @@ def mensaje_a_binario(mensaje_1):
     elif type(mensaje_1) == int or type(mensaje_1) == np.uint8:
         return format(mensaje_1, "08b")
     else:
-        raise TypeError("Input type not supported")
+        raise TypeError("Tipo de dato no soportado")
 
 
 def esconder_datos(imagen, mensaje_secreto):
     n_bytes = imagen.shape[0] * imagen.shape[1] * 3 // 8
 
     if len(mensaje_secreto) > n_bytes:
-        raise ValueError("Error encountered insufficient bytes, need bigger imagen or less data !!")
+        raise ValueError("La imagen no es válida")
 
     mensaje_secreto += "#####"
 
@@ -75,10 +76,9 @@ def Ingresar_Mensaje():
     cv2.destroyAllWindows()
     print()
     Mensaje = input("Introduzca el mensaje de texto a ocultar: ")
-    if (len(Mensaje) == 0):
+    if len(Mensaje) == 0:
         raise ValueError('No hay ningún mensaje')
     print()
-
 
     archivo = "proyimod1T.png"
     imagen_encodeada = esconder_datos(imagen, Mensaje)
@@ -91,6 +91,8 @@ def Ingresar_Mensaje():
     cv2.imshow('Con texto oculto', imagen2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+
 def Extraer_Mensaje():
     archivo = "proyimod1T.png"
     datos_imagen = cv2.imread(archivo, 1)
@@ -106,7 +108,7 @@ def Escala_Grises():
     imagen = cv2.imread(archivo)
     imagen_gris = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
     imagen_gris = cv2.cvtColor(imagen_gris, cv2.COLOR_GRAY2RGB)
-    cv2.imwrite('proyimgr1T.png',imagen_gris)
+    cv2.imwrite('proyimgr1T.png', imagen_gris)
     cv2.imshow('Escala de grises', imagen_gris)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -120,17 +122,18 @@ def Salir():
 
 def Menu():
     while True:
-        print(("\033[1m\033[4mAPLICACIÓN ESTEGANO\033[0m\033[0m".center(100, " ")), end = "\n")
+        print(("\033[1m\033[4mAPLICACIÓN ESTEGANO\033[0m\033[0m".center(100, " ")), end="\n")
         print()
-        a = input("1. Insertar mensaje oculto en una imagen \n2. Extraer mensaje oculto de una imagen \n3. Convertir la imagen a escala de grises \n4. Salir \n\nOpción: ")
+        a = input(
+            "1. Insertar mensaje oculto en una imagen \n2. Extraer mensaje oculto de una imagen \n3. Convertir la imagen a escala de grises \n4. Salir \n\nOpción: ")
         usuario = int(a)
-        if (usuario == 1):
+        if usuario == 1:
             print()
             print("OPCIÓN: Insertar mensaje oculto en una imagen")
             print()
             Ingresar_Mensaje()
 
-        elif (usuario == 2):
+        elif usuario == 2:
             print()
             print("OPCIÓN: Extraer mensaje de una imagen")
             print()
@@ -139,14 +142,14 @@ def Menu():
             print()
             print("El texto oculto es: " + Extraer_Mensaje())
             print()
-        elif (usuario == 3):
+        elif usuario == 3:
             print("\nOPCIÓN: Convertir la imagen a escala de grises")
             print()
             Escala_Grises()
             print()
             print("Convirtiendo la imagen a escala de grises...")
             print()
-        elif (usuario == 4):
+        elif usuario == 4:
             print()
             Salir()
             break
@@ -154,4 +157,6 @@ def Menu():
             print()
             print("Opción no válida")
             print()
+
+
 Menu()
