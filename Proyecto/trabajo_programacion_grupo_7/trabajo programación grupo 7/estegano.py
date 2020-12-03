@@ -13,7 +13,7 @@ def mensaje_a_binario(mensaje_1):
         return format(mensaje_1, "08b")
     else:
         raise TypeError("Tipo de dato no soportado")
-
+#Esta función pasa una cadena de texto a binario, lo que nos hará falta posteriormente para insertarlo en la foto
 
 def esconder_datos(imagen, mensaje_secreto):
     n_bytes = imagen.shape[0] * imagen.shape[1] * 3 // 8
@@ -43,7 +43,7 @@ def esconder_datos(imagen, mensaje_secreto):
                 break
 
     return imagen
-
+#Recoge el texto en binario y lo mete dentro de la foto en cuestión
 
 def enseñar_datos(imagen):
     datos_binarios = ""
@@ -100,7 +100,7 @@ def Extraer_Mensaje():
     print()
     text = enseñar_datos(datos_imagen)
     return text
-
+#Obtiene el texto que se esconde en una foto 
 
 def Escala_Grises():
     archivo = 'proyimag1T.png'
@@ -112,13 +112,13 @@ def Escala_Grises():
     cv2.imshow('Escala de grises', imagen_gris)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
+# Pasa una foto a color a escala de grises y la guarda
 
 def Salir():
     print("Gracias por usar el programa!")
     print()
     print("Tenga un buen día!")
-
+#función implementada para la opción de cerrar el programa
 
 def Menu():
     while True:
@@ -157,6 +157,7 @@ def Menu():
             print()
             print("Opción no válida")
             print()
+#Esta función es el menú del programa
 
-
-Menu()
+#cuerpo
+Menu()  
