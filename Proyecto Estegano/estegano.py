@@ -1,9 +1,14 @@
+# En primer lugar, importaremos las librerias que ayudan a la implementación del código.
 import cv2
-import numpy as np  #librerias que ayudan a la implementación del código
+import numpy as np
 
 print()
 
 
+# Ahora procederemos a implementar las funciones para realizar las diferentes opciones.
+
+# En primer lugar y antes de definir las funciones de las opciones, crearemos una función mediante la cual
+# convertiremos el mensaje que queramos ocultar a binario para posteriormente unirlo a la imagen.
 def mensaje_a_binario(mensaje_1):
     if type(mensaje_1) == str:
         return ''.join([format(ord(i), "08b") for i in mensaje_1])
@@ -13,8 +18,9 @@ def mensaje_a_binario(mensaje_1):
         return format(mensaje_1, "08b")
     else:
         raise TypeError("Tipo de dato no soportado")
-#Esta función pasa una cadena de texto a binario, lo que nos hará falta posteriormente para insertarlo en la foto
 
+
+# Mediante esta función conseguiremos que el mensaje que queramos ocultar en la imagen se introduzca dentro de la misma.
 def esconder_datos(imagen, mensaje_secreto):
     n_bytes = imagen.shape[0] * imagen.shape[1] * 3 // 8
 
@@ -43,8 +49,9 @@ def esconder_datos(imagen, mensaje_secreto):
                 break
 
     return imagen
-#Recoge el texto en binario y lo mete dentro de la foto en cuestión
 
+
+# A continuación, con esta función obtendremos el mensaje que hemos introducido con la función previa.
 def enseñar_datos(imagen):
     datos_binarios = ""
     for valores in imagen:
@@ -63,9 +70,12 @@ def enseñar_datos(imagen):
     return datos_decodeados[:-5]
 
 
+# Definiremos ahora el cuerpo de la opción Nº1, junto con todas sus variables,
+# así como el nombre de la imagen y todos los textos necesarios de la misma, utilizaremos además
+# la función definida previamente para implementar el mensaje oculto en la imagen.
 def Ingresar_Mensaje():
     nombre_imagen = "proyimag1T.png"
-    imagen = cv2.imread(".\proyimag1T.png")
+    imagen = cv2.imread("proyimag1T.png")
     tamaño = imagen.shape
     altura = tamaño[0]
     anchura = tamaño[1]
@@ -87,12 +97,14 @@ def Ingresar_Mensaje():
     print()
     print(f"El fichero {nombre_imagen} es diferente a {archivo}")
     print()
-    imagen2 = cv2.imread(".\proyimod1T.png")
+    imagen2 = cv2.imread("proyimod1T.png")
     cv2.imshow('Con texto oculto', imagen2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-#
 
+
+# Para la opción Nº2 definiremos el cuerpo de la función, así como el uso de la función definida
+# previamente para mostrar el mensaje oculto en la imagen junto con sus variables correspondientes.
 def Extraer_Mensaje():
     archivo = "proyimod1T.png"
     datos_imagen = cv2.imread(archivo, 1)
@@ -100,8 +112,10 @@ def Extraer_Mensaje():
     print()
     text = enseñar_datos(datos_imagen)
     return text
-#Obtiene el texto que se esconde en una foto 
 
+
+# Con la opción Nº3 definiremos una función la cual nos permita modificar la imagen original
+# de forma que esta pase a tener una gama de colores de grises, siendo determinada como Escala de grises.
 def Escala_Grises():
     archivo = 'proyimag1T.png'
     print("El fichero de la imagen se llama: " + archivo)
@@ -112,13 +126,19 @@ def Escala_Grises():
     cv2.imshow('Escala de grises', imagen_gris)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-# Pasa una foto a color a escala de grises y la guarda
 
+
+# Definiremos en último lugar la opción Nº4 mediante la cual mostraremos
+# un mensaje por pantalla despidiendonos del usuario.
 def Salir():
     print("Gracias por usar el programa!")
     print()
     print("Tenga un buen día!")
-#función implementada para la opción de cerrar el programa
+
+
+# Crearemos ahora una función que sirva como menú que contenga
+# todas las funciones creadas anteriormente en sus opciones correspondientes
+# y poder ir seleccionando cada una de ellas con su funcionalidad asignada.
 
 def Menu():
     while True:
@@ -157,7 +177,8 @@ def Menu():
             print()
             print("Opción no válida")
             print()
-#Esta función es el menú del programa
 
-#cuerpo
-Menu()  
+
+# En último lugar llamaremos a la función de Menu mediante la cual se
+# realizará la ejecución de las funciones creadas anteriormente.
+Menu()
