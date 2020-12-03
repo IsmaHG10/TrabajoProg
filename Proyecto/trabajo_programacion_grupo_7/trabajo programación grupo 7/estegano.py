@@ -1,5 +1,5 @@
 import cv2
-import numpy as np
+import numpy as np  #librerias que ayudan a la implementación del código
 
 print()
 
@@ -91,7 +91,7 @@ def Ingresar_Mensaje():
     cv2.imshow('Con texto oculto', imagen2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
+#
 
 def Extraer_Mensaje():
     archivo = "proyimod1T.png"
